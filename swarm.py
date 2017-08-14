@@ -7,20 +7,13 @@ class Program:
         self.pointer1 = -1
         self.pointer2 = -2
         self.power_of_ten = 0
-        self.control_lock = False
 
         with open(filename) as f:
             program = ''.join(line.strip() for line in f)
             #print program
             program = [program[i:i + 2] for i in range(0, len(program), 2)]
-            for func in program:
-                if func == '1E':
-                    self.control_lock = False
-                if not self.control_lock:
-                    try:
-                        eval('self.x' + func + '()')
-                    except:
-                        pass
+            program = self.parse(program)
+            self.execute(program)
 
     # create a new variable
     def x00(self):
@@ -137,20 +130,47 @@ class Program:
     # if
     def x1C(self):
         if self.variable[self.pointer1]:
-            self.control_lock = False
+            return True
         else:
-            self.control_lock = True
+            return False
 
     # if not
     def x1D(self):
         if not self.variable[self.pointer1]:
-            self.control_lock = False
+            return True
         else:
-            self.control_lock = True
+            return False
 
-    # end control
+    # end
     def x1E(self):
-        self.control_lock = False
+        pass
+
+    # parse the nested statements
+    def parse(self,program):
+        result = []
+        while len(program) > 0:
+            inst = program.pop(0)
+            result.append(inst)
+            if inst == '1C' or inst == '1D':
+                result.append(self.parse(program))
+            elif inst == '1E':
+                return result
+        return result
+
+    # execute the given program
+    def execute(self,program):
+        #print program
+        i = 0
+        while i < len(program):
+            if program[i] == '1C' or program[i] == '1D':
+                if eval('self.x' + program[i] + '()'):
+                    self.execute(program[i+1])
+            else:
+                try:
+                    eval('self.x' + program[i] + '()')
+                except:
+                    pass
+            i += 1
 
 if __name__ == "__main__":
     Program(sys.argv[1])
