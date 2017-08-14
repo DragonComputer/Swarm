@@ -294,6 +294,14 @@ class Program:
     def x3F(self):
         self.variable[self.pointer1] = math.radians(self.variable[self.pointer1])
 
+    # assign pi
+    def x40(self):
+        self.variable[self.pointer1] = math.pi
+
+    # assign e
+    def x41(self):
+        self.variable[self.pointer1] = math.e
+
 
     # parse the nested statements
     def parse(self,program):
