@@ -254,6 +254,46 @@ class Program:
     def x35(self):
         self.variable[self.pointer1] = random.uniform(self.variable[self.pointer1], self.variable[self.pointer2])
 
+    # acos
+    def x36(self):
+        self.variable[self.pointer1] = math.acos(self.variable[self.pointer1])
+
+    # asin
+    def x37(self):
+        self.variable[self.pointer1] = math.asin(self.variable[self.pointer1])
+
+    # atan
+    def x38(self):
+        self.variable[self.pointer1] = math.atan(self.variable[self.pointer1])
+
+    # atan2
+    def x39(self):
+        self.variable[self.pointer1] = math.atan2(self.variable[self.pointer1], self.variable[self.pointer2])
+
+    # cos
+    def x3A(self):
+        self.variable[self.pointer1] = math.cos(self.variable[self.pointer1])
+
+    # hypot
+    def x3B(self):
+        self.variable[self.pointer1] = math.hypot(self.variable[self.pointer1], self.variable[self.pointer2])
+
+    # sin
+    def x3C(self):
+        self.variable[self.pointer1] = math.sin(self.variable[self.pointer1])
+
+    # tan
+    def x3D(self):
+        self.variable[self.pointer1] = math.tan(self.variable[self.pointer1])
+
+    # degrees
+    def x3E(self):
+        self.variable[self.pointer1] = math.degrees(self.variable[self.pointer1])
+
+    # radians
+    def x3F(self):
+        self.variable[self.pointer1] = math.radians(self.variable[self.pointer1])
+
 
     # parse the nested statements
     def parse(self,program):
