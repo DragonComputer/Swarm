@@ -6,9 +6,7 @@ class Program:
 
     def __init__(self, filename):
         self.variable = []
-        self.pointer1 = -1
-        self.pointer2 = -2
-        self.pointer3 = -3
+        self.pointer = []
         self.power_of_ten = 0
 
         with open(filename) as f:
@@ -25,6 +23,7 @@ class Program:
     # create a new variable
     def x00(self):
         self.variable.append(None)
+        self.pointer.append(-len(self.variable))
 
     # print all variables
     def x01(self):
@@ -32,23 +31,23 @@ class Program:
 
     # assign an integer value
     def x02(self):
-        self.variable[self.pointer1] = 0
+        self.variable[-1] = 0
 
     # assign a float value
     def x03(self):
-        self.variable[self.pointer1] = 0.0
+        self.variable[-1] = 0.0
 
     # assign a string value
     def x04(self):
-        self.variable[self.pointer1] = ""
+        self.variable[-1] = ""
 
     # + 1
     def x05(self):
-        self.variable[self.pointer1] = self.variable[self.pointer1] + 1 * (10 ** self.power_of_ten)
+        self.variable[-1] = self.variable[-1] + 1 * (10 ** self.power_of_ten)
 
     # - 1
     def x06(self):
-        self.variable[self.pointer1] = self.variable[self.pointer1] - 1 * (10 ** self.power_of_ten)
+        self.variable[-1] = self.variable[-1] - 1 * (10 ** self.power_of_ten)
 
     # power of ten + 1
     def x07(self):
@@ -60,94 +59,96 @@ class Program:
 
     # addition
     def x09(self):
-        self.variable[self.pointer1] = self.variable[self.pointer1] + self.variable[self.pointer2]
+        self.variable[-1] = self.variable[-1] + self.variable[-2]
 
     # subtraction
     def x0A(self):
-        self.variable[self.pointer1] = self.variable[self.pointer1] - self.variable[self.pointer2]
+        self.variable[-1] = self.variable[-1] - self.variable[-2]
 
     # multiplication
     def x0B(self):
-        self.variable[self.pointer1] = self.variable[self.pointer1] * self.variable[self.pointer2]
+        self.variable[-1] = self.variable[-1] * self.variable[-2]
 
     # division
     def x0C(self):
-        self.variable[self.pointer1] = self.variable[self.pointer1] / self.variable[self.pointer2]
+        self.variable[-1] = self.variable[-1] / self.variable[-2]
 
     # modulus
     def x0D(self):
-        self.variable[self.pointer1] = self.variable[self.pointer1] % self.variable[self.pointer2]
+        self.variable[-1] = self.variable[-1] % self.variable[-2]
 
     # exponent
     def x0E(self):
-        self.variable[self.pointer1] = self.variable[self.pointer1] ** self.variable[self.pointer2]
+        self.variable[-1] = self.variable[-1] ** self.variable[-2]
 
     # floor division
     def x0F(self):
-        self.variable[self.pointer1] = self.variable[self.pointer1] // self.variable[self.pointer2]
+        self.variable[-1] = self.variable[-1] // self.variable[-2]
 
     # assign False
     def x10(self):
-        self.variable[self.pointer1] = False
+        self.variable[-1] = False
 
     # assign True
     def x11(self):
-        self.variable[self.pointer1] = True
+        self.variable[-1] = True
 
     # == (equal)
     def x12(self):
-        self.variable[self.pointer1] = self.variable[self.pointer1] == self.variable[self.pointer2]
+        self.variable[-1] = self.variable[-1] == self.variable[-2]
 
     # != (not equal)
     def x13(self):
-        self.variable[self.pointer1] = self.variable[self.pointer1] != self.variable[self.pointer2]
+        self.variable[-1] = self.variable[-1] != self.variable[-2]
 
     # > (greater than)
     def x14(self):
-        self.variable[self.pointer1] = self.variable[self.pointer1] > self.variable[self.pointer2]
+        self.variable[-1] = self.variable[-1] > self.variable[-2]
 
     # < (less than)
     def x15(self):
-        self.variable[self.pointer1] = self.variable[self.pointer1] < self.variable[self.pointer2]
+        self.variable[-1] = self.variable[-1] < self.variable[-2]
 
     # >= (greater than or equal)
     def x16(self):
-        self.variable[self.pointer1] = self.variable[self.pointer1] >= self.variable[self.pointer2]
+        self.variable[-1] = self.variable[-1] >= self.variable[-2]
 
     # <= (less than or equal)
     def x17(self):
-        self.variable[self.pointer1] = self.variable[self.pointer1] <= self.variable[self.pointer2]
+        self.variable[-1] = self.variable[-1] <= self.variable[-2]
 
-    # increase pointer1
+    # increase the pointer
     def x18(self):
-        self.pointer1 += 1
-        sign = self.pointer1 / self.pointer1
-        self.pointer1 = sign * (self.pointer1 % len(self.variable))
+        the_pointer = self.pointer[self.variable[-1] % len(self.pointer)]
+        the_pointer += 1
+        sign = the_pointer / abs(the_pointer)
+        self.pointer[self.variable[-1] % len(self.pointer)] = sign * (the_pointer % len(self.variable))
 
-    # decrease pointer1
+    # decrease the pointer
     def x19(self):
-        self.pointer1 -= 1
-        sign = self.pointer1 / self.pointer1
-        self.pointer1 = sign * (self.pointer1 % len(self.variable))
+        the_pointer = self.pointer[self.variable[-1] % len(self.pointer)]
+        the_pointer -= 1
+        sign = the_pointer / abs(the_pointer)
+        self.pointer[self.variable[-1] % len(self.pointer)] = sign * (the_pointer % len(self.variable))
 
-    # increase pointer2
+    # assign an empty list
     def x1A(self):
-        self.pointer2 += 1
+        self.variable[-1] = []
 
-    # decrease pointer2
+    # assign an empty dictionary
     def x1B(self):
-        self.pointer2 -= 1
+        self.variable[-1] = {}
 
     # if
     def x1C(self):
-        if self.variable[self.pointer1]:
+        if self.variable[-1]:
             return True
         else:
             return False
 
     # if not
     def x1D(self):
-        if not self.variable[self.pointer1]:
+        if not self.variable[-1]:
             return True
         else:
             return False
@@ -158,14 +159,14 @@ class Program:
 
     # while
     def x1F(self):
-        if self.variable[self.pointer1]:
+        if self.variable[-1]:
             return True
         else:
             return False
 
     # unless
     def x20(self):
-        if not self.variable[self.pointer1]:
+        if not self.variable[-1]:
             return True
         else:
             return False
@@ -176,131 +177,131 @@ class Program:
 
     # abs
     def x22(self):
-        self.variable[self.pointer1] = abs(self.variable[self.pointer1])
+        self.variable[-1] = abs(self.variable[-1])
 
     # ceil
     def x23(self):
-        self.variable[self.pointer1] = math.ceil(self.variable[self.pointer1])
+        self.variable[-1] = math.ceil(self.variable[-1])
 
     # cmp
     def x24(self):
-        self.variable[self.pointer1] = cmp(self.variable[self.pointer1], self.variable[self.pointer2])
+        self.variable[-1] = cmp(self.variable[-1], self.variable[-2])
 
     # exp
     def x25(self):
-        self.variable[self.pointer1] = math.exp(self.variable[self.pointer1])
+        self.variable[-1] = math.exp(self.variable[-1])
 
     # fabs
     def x26(self):
-        self.variable[self.pointer1] = math.fabs(self.variable[self.pointer1])
+        self.variable[-1] = math.fabs(self.variable[-1])
 
     # floor
     def x27(self):
-        self.variable[self.pointer1] = math.floor(self.variable[self.pointer1])
+        self.variable[-1] = math.floor(self.variable[-1])
 
     # log
     def x28(self):
-        self.variable[self.pointer1] = math.log(self.variable[self.pointer1])
+        self.variable[-1] = math.log(self.variable[-1])
 
     # log10
     def x29(self):
-        self.variable[self.pointer1] = math.log10(self.variable[self.pointer1])
+        self.variable[-1] = math.log10(self.variable[-1])
 
     # max
     def x2A(self):
-        self.variable[self.pointer1] = max(self.variable[self.pointer1])
+        self.variable[-1] = max(self.variable[-1])
 
     # min
     def x2B(self):
-        self.variable[self.pointer1] = min(self.variable[self.pointer1])
+        self.variable[-1] = min(self.variable[-1])
 
     # modf
     def x2C(self):
-        self.variable[self.pointer1] = math.modf(self.variable[self.pointer1])
+        self.variable[-1] = math.modf(self.variable[-1])
 
     # pow
     def x2D(self):
-        self.variable[self.pointer1] = math.pow(self.variable[self.pointer1], self.variable[self.pointer2])
+        self.variable[-1] = math.pow(self.variable[-1], self.variable[-2])
 
     # round
     def x2E(self):
-        self.variable[self.pointer1] = round(self.variable[self.pointer1], self.variable[self.pointer2])
+        self.variable[-1] = round(self.variable[-1], self.variable[-2])
 
     # sqrt
     def x2F(self):
-        self.variable[self.pointer1] = math.sqrt(self.variable[self.pointer1])
+        self.variable[-1] = math.sqrt(self.variable[-1])
 
     # choice
     def x30(self):
-        self.variable[self.pointer1] = random.choice(self.variable[self.pointer1])
+        self.variable[-1] = random.choice(self.variable[-1])
 
     # randrange
     def x31(self):
-        self.variable[self.pointer1] = random.randrange(self.variable[self.pointer1], self.variable[self.pointer2], self.variable[self.pointer3])
+        self.variable[-1] = random.randrange(self.variable[-1], self.variable[-2], self.variable[-3])
 
     # random
     def x32(self):
-        self.variable[self.pointer1] = random.random()
+        self.variable[-1] = random.random()
 
     # seed
     def x33(self):
-        random.seed(self.variable[self.pointer1])
+        random.seed(self.variable[-1])
 
     # shuffle
     def x34(self):
-        random.shuffle(self.variable[self.pointer1])
+        random.shuffle(self.variable[-1])
 
     # uniform
     def x35(self):
-        self.variable[self.pointer1] = random.uniform(self.variable[self.pointer1], self.variable[self.pointer2])
+        self.variable[-1] = random.uniform(self.variable[-1], self.variable[-2])
 
     # acos
     def x36(self):
-        self.variable[self.pointer1] = math.acos(self.variable[self.pointer1])
+        self.variable[-1] = math.acos(self.variable[-1])
 
     # asin
     def x37(self):
-        self.variable[self.pointer1] = math.asin(self.variable[self.pointer1])
+        self.variable[-1] = math.asin(self.variable[-1])
 
     # atan
     def x38(self):
-        self.variable[self.pointer1] = math.atan(self.variable[self.pointer1])
+        self.variable[-1] = math.atan(self.variable[-1])
 
     # atan2
     def x39(self):
-        self.variable[self.pointer1] = math.atan2(self.variable[self.pointer1], self.variable[self.pointer2])
+        self.variable[-1] = math.atan2(self.variable[-1], self.variable[-2])
 
     # cos
     def x3A(self):
-        self.variable[self.pointer1] = math.cos(self.variable[self.pointer1])
+        self.variable[-1] = math.cos(self.variable[-1])
 
     # hypot
     def x3B(self):
-        self.variable[self.pointer1] = math.hypot(self.variable[self.pointer1], self.variable[self.pointer2])
+        self.variable[-1] = math.hypot(self.variable[-1], self.variable[-2])
 
     # sin
     def x3C(self):
-        self.variable[self.pointer1] = math.sin(self.variable[self.pointer1])
+        self.variable[-1] = math.sin(self.variable[-1])
 
     # tan
     def x3D(self):
-        self.variable[self.pointer1] = math.tan(self.variable[self.pointer1])
+        self.variable[-1] = math.tan(self.variable[-1])
 
     # degrees
     def x3E(self):
-        self.variable[self.pointer1] = math.degrees(self.variable[self.pointer1])
+        self.variable[-1] = math.degrees(self.variable[-1])
 
     # radians
     def x3F(self):
-        self.variable[self.pointer1] = math.radians(self.variable[self.pointer1])
+        self.variable[-1] = math.radians(self.variable[-1])
 
     # assign pi
     def x40(self):
-        self.variable[self.pointer1] = math.pi
+        self.variable[-1] = math.pi
 
     # assign e
     def x41(self):
-        self.variable[self.pointer1] = math.e
+        self.variable[-1] = math.e
 
 
     # parse the nested statements
