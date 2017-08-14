@@ -1,5 +1,6 @@
 import sys
 import math
+import random
 
 class Program:
 
@@ -7,6 +8,7 @@ class Program:
         self.variable = []
         self.pointer1 = -1
         self.pointer2 = -2
+        self.pointer3 = -3
         self.power_of_ten = 0
 
         with open(filename) as f:
@@ -15,6 +17,7 @@ class Program:
             program = [program[i:i + 2] for i in range(0, len(program), 2)]
             program = self.parse(program)
             #print program
+            self.x00()
             self.x00()
             self.x00()
             self.execute(program)
@@ -226,6 +229,31 @@ class Program:
     # sqrt
     def x2F(self):
         self.variable[self.pointer1] = math.sqrt(self.variable[self.pointer1])
+
+    # choice
+    def x30(self):
+        self.variable[self.pointer1] = random.choice(self.variable[self.pointer1])
+
+    # randrange
+    def x31(self):
+        self.variable[self.pointer1] = random.randrange(self.variable[self.pointer1], self.variable[self.pointer2], self.variable[self.pointer3])
+
+    # random
+    def x32(self):
+        self.variable[self.pointer1] = random.random()
+
+    # seed
+    def x33(self):
+        random.seed(self.variable[self.pointer1])
+
+    # shuffle
+    def x34(self):
+        random.shuffle(self.variable[self.pointer1])
+
+    # uniform
+    def x35(self):
+        self.variable[self.pointer1] = random.uniform(self.variable[self.pointer1], self.variable[self.pointer2])
+
 
     # parse the nested statements
     def parse(self,program):
