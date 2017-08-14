@@ -145,13 +145,27 @@ class Program:
     def x1E(self):
         pass
 
+    # while
+    def x1F(self):
+        if self.variable[self.pointer1]:
+            return True
+        else:
+            return False
+
+    # unless
+    def x20(self):
+        if not self.variable[self.pointer1]:
+            return True
+        else:
+            return False
+
     # parse the nested statements
     def parse(self,program):
         result = []
         while len(program) > 0:
             inst = program.pop(0)
             result.append(inst)
-            if inst == '1C' or inst == '1D':
+            if inst == '1C' or inst == '1D' or inst == '1F' or inst == '20':
                 result.append(self.parse(program))
             elif inst == '1E':
                 return result
@@ -164,6 +178,9 @@ class Program:
         while i < len(program):
             if program[i] == '1C' or program[i] == '1D':
                 if eval('self.x' + program[i] + '()'):
+                    self.execute(program[i+1])
+            elif program[i] == '1F' or program[i] == '20':
+                while eval('self.x' + program[i] + '()'):
                     self.execute(program[i+1])
             else:
                 try:
