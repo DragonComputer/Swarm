@@ -13,6 +13,9 @@ class Program:
             #print program
             program = [program[i:i + 2] for i in range(0, len(program), 2)]
             program = self.parse(program)
+            #print program
+            self.x00()
+            self.x00()
             self.execute(program)
 
     # create a new variable
