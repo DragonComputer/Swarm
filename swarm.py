@@ -163,6 +163,10 @@ class Program:
         else:
             return False
 
+    # break
+    def x21(self):
+        pass
+
     # parse the nested statements
     def parse(self,program):
         result = []
@@ -185,8 +189,11 @@ class Program:
                     self.execute(program[i+1])
             elif program[i] == '1F' or program[i] == '20':
                 while eval('self.x' + program[i] + '()'):
-                    self.execute(program[i+1])
+                    if self.execute(program[i+1]) == "break":
+                        break
             else:
+                if program[i] == '21':
+                    return "break"
                 try:
                     eval('self.x' + program[i] + '()')
                 except:
