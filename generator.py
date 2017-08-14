@@ -3,7 +3,7 @@ from random import randint
 program = ""
 
 for i in range(randint(1,10000)):
-    dec = randint(0, 91)
+    dec = randint(0, 118)
     hexa = hex(dec).split('x')[-1].upper()
     if len(hexa) == 1:
         hexa = '0' + hexa

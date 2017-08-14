@@ -407,6 +407,110 @@ class Program:
     def x5B(self):
         self.variable[-1] = 'z'
 
+    # letter A
+    def x5C(self):
+        self.variable[-1] = 'A'
+
+    # letter B
+    def x5D(self):
+        self.variable[-1] = 'B'
+
+    # letter C
+    def x5E(self):
+        self.variable[-1] = 'C'
+
+    # letter D
+    def x5F(self):
+        self.variable[-1] = 'D'
+
+    # letter E
+    def x60(self):
+        self.variable[-1] = 'E'
+
+    # letter F
+    def x61(self):
+        self.variable[-1] = 'F'
+
+    # letter G
+    def x62(self):
+        self.variable[-1] = 'G'
+
+    # letter H
+    def x63(self):
+        self.variable[-1] = 'H'
+
+    # letter I
+    def x64(self):
+        self.variable[-1] = 'I'
+
+    # letter J
+    def x65(self):
+        self.variable[-1] = 'J'
+
+    # letter K
+    def x66(self):
+        self.variable[-1] = 'K'
+
+    # letter L
+    def x67(self):
+        self.variable[-1] = 'L'
+
+    # letter M
+    def x68(self):
+        self.variable[-1] = 'M'
+
+    # letter N
+    def x69(self):
+        self.variable[-1] = 'N'
+
+    # letter O
+    def x6A(self):
+        self.variable[-1] = 'O'
+
+    # letter P
+    def x6B(self):
+        self.variable[-1] = 'P'
+
+    # letter Q
+    def x6C(self):
+        self.variable[-1] = 'Q'
+
+    # letter R
+    def x6D(self):
+        self.variable[-1] = 'R'
+
+    # letter S
+    def x6E(self):
+        self.variable[-1] = 'S'
+
+    # letter T
+    def x6F(self):
+        self.variable[-1] = 'T'
+
+    # letter U
+    def x71(self):
+        self.variable[-1] = 'U'
+
+    # letter V
+    def x72(self):
+        self.variable[-1] = 'V'
+
+    # letter W
+    def x73(self):
+        self.variable[-1] = 'W'
+
+    # letter X
+    def x74(self):
+        self.variable[-1] = 'X'
+
+    # letter Y
+    def x75(self):
+        self.variable[-1] = 'Y'
+
+    # letter Z
+    def x76(self):
+        self.variable[-1] = 'Z'
+
 
     # parse the nested statements
     def parse(self,program):
