@@ -7,16 +7,20 @@ class Program:
         self.pointer1 = -1
         self.pointer2 = -2
         self.power_of_ten = 0
+        self.control_lock = False
 
         with open(filename) as f:
             program = ''.join(line.strip() for line in f)
             #print program
             program = [program[i:i + 2] for i in range(0, len(program), 2)]
             for func in program:
-                try:
-                    eval('self.x' + func + '()')
-                except:
-                    pass
+                if func == '1E':
+                    self.control_lock = False
+                if not self.control_lock:
+                    try:
+                        eval('self.x' + func + '()')
+                    except:
+                        pass
 
     # create a new variable
     def x00(self):
@@ -129,6 +133,24 @@ class Program:
     # decrease pointer2
     def x1B(self):
         self.pointer2 -= 1
+
+    # if
+    def x1C(self):
+        if self.variable[self.pointer1]:
+            self.control_lock = False
+        else:
+            self.control_lock = True
+
+    # if not
+    def x1D(self):
+        if not self.variable[self.pointer1]:
+            self.control_lock = False
+        else:
+            self.control_lock = True
+
+    # end control
+    def x1E(self):
+        self.control_lock = False
 
 if __name__ == "__main__":
     Program(sys.argv[1])
