@@ -173,13 +173,21 @@ class Program:
     # parse the nested statements
     def parse(self,program):
         result = []
+        list_ref = result
+        list_refs_stack = []
         while len(program) > 0:
             inst = program.pop(0)
-            result.append(inst)
             if inst == '1C' or inst == '1D' or inst == '1F' or inst == '20':
-                result.append(self.parse(program))
+                list_ref.append(inst)
+                list_ref.append([])
+                list_refs_stack.append(list_ref)
+                list_ref = list_ref[-1]
             elif inst == '1E':
-                return result
+                if list_refs_stack:
+                    list_ref = list_refs_stack.pop()
+                list_ref.append(inst)
+            else:
+                list_ref.append(inst)
         return result
 
     # execute the given program
