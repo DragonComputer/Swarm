@@ -11,75 +11,124 @@ class Program:
         with open(filename) as f:
             program = ''.join(line.strip() for line in f)
             #print program
+            program = [program[i:i + 2] for i in range(0, len(program), 2)]
             for func in program:
                 try:
                     eval('self.x' + func + '()')
                 except:
                     pass
 
-    # Create a new variable
-    def x0(self):
+    # create a new variable
+    def x00(self):
         self.variable.append(None)
 
-    # Print all variables
-    def x1(self):
+    # print all variables
+    def x01(self):
         print self.variable
 
-    # Assign an integer value
-    def x2(self):
+    # assign an integer value
+    def x02(self):
         self.variable[self.pointer1] = 0
 
-    # Assign a float value
-    def x3(self):
+    # assign a float value
+    def x03(self):
         self.variable[self.pointer1] = 0.0
 
-    # Assigne a string value
-    def x4(self):
+    # assign a string value
+    def x04(self):
         self.variable[self.pointer1] = ""
 
     # + 1
-    def x5(self):
+    def x05(self):
         self.variable[self.pointer1] = self.variable[self.pointer1] + 1 * (10 ** self.power_of_ten)
 
     # - 1
-    def x6(self):
+    def x06(self):
         self.variable[self.pointer1] = self.variable[self.pointer1] - 1 * (10 ** self.power_of_ten)
 
     # power of ten + 1
-    def x7(self):
+    def x07(self):
         self.power_of_ten = self.power_of_ten + 1
 
     # power of ten - 1
-    def x8(self):
+    def x08(self):
         self.power_of_ten = self.power_of_ten - 1
 
     # addition
-    def x9(self):
+    def x09(self):
         self.variable[self.pointer1] = self.variable[self.pointer1] + self.variable[self.pointer2]
 
     # subtraction
-    def xA(self):
+    def x0A(self):
         self.variable[self.pointer1] = self.variable[self.pointer1] - self.variable[self.pointer2]
 
     # multiplication
-    def xB(self):
+    def x0B(self):
         self.variable[self.pointer1] = self.variable[self.pointer1] * self.variable[self.pointer2]
 
     # division
-    def xC(self):
+    def x0C(self):
         self.variable[self.pointer1] = self.variable[self.pointer1] / self.variable[self.pointer2]
 
     # modulus
-    def xD(self):
+    def x0D(self):
         self.variable[self.pointer1] = self.variable[self.pointer1] % self.variable[self.pointer2]
 
     # exponent
-    def xE(self):
+    def x0E(self):
         self.variable[self.pointer1] = self.variable[self.pointer1] ** self.variable[self.pointer2]
 
     # floor division
-    def x9(self):
+    def x0F(self):
         self.variable[self.pointer1] = self.variable[self.pointer1] // self.variable[self.pointer2]
+
+    # assign False
+    def x10(self):
+        self.variable[self.pointer1] = False
+
+    # assign True
+    def x11(self):
+        self.variable[self.pointer1] = True
+
+    # == (equal)
+    def x12(self):
+        self.variable[self.pointer1] = self.variable[self.pointer1] == self.variable[self.pointer2]
+
+    # != (not equal)
+    def x13(self):
+        self.variable[self.pointer1] = self.variable[self.pointer1] != self.variable[self.pointer2]
+
+    # > (greater than)
+    def x14(self):
+        self.variable[self.pointer1] = self.variable[self.pointer1] > self.variable[self.pointer2]
+
+    # < (less than)
+    def x15(self):
+        self.variable[self.pointer1] = self.variable[self.pointer1] < self.variable[self.pointer2]
+
+    # >= (greater than or equal)
+    def x16(self):
+        self.variable[self.pointer1] = self.variable[self.pointer1] >= self.variable[self.pointer2]
+
+    # <= (less than or equal)
+    def x17(self):
+        self.variable[self.pointer1] = self.variable[self.pointer1] <= self.variable[self.pointer2]
+
+    # increase pointer1
+    def x18(self):
+        self.pointer1 += 1
+
+    # decrease pointer1
+    def x19(self):
+        self.pointer1 -= 1
+
+    # increase pointer2
+    def x1A(self):
+        self.pointer2 += 1
+
+    # decrease pointer2
+    def x1B(self):
+        self.pointer2 -= 1
 
 if __name__ == "__main__":
     Program(sys.argv[1])
