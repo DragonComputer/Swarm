@@ -1,4 +1,5 @@
 import sys
+import math
 
 class Program:
 
@@ -169,6 +170,62 @@ class Program:
     # break
     def x21(self):
         pass
+
+    # abs
+    def x22(self):
+        self.variable[self.pointer1] = abs(self.variable[self.pointer1])
+
+    # ceil
+    def x23(self):
+        self.variable[self.pointer1] = math.ceil(self.variable[self.pointer1])
+
+    # cmp
+    def x24(self):
+        self.variable[self.pointer1] = cmp(self.variable[self.pointer1], self.variable[self.pointer2])
+
+    # exp
+    def x25(self):
+        self.variable[self.pointer1] = math.exp(self.variable[self.pointer1])
+
+    # fabs
+    def x26(self):
+        self.variable[self.pointer1] = math.fabs(self.variable[self.pointer1])
+
+    # floor
+    def x27(self):
+        self.variable[self.pointer1] = math.floor(self.variable[self.pointer1])
+
+    # log
+    def x28(self):
+        self.variable[self.pointer1] = math.log(self.variable[self.pointer1])
+
+    # log10
+    def x29(self):
+        self.variable[self.pointer1] = math.log10(self.variable[self.pointer1])
+
+    # max
+    def x2A(self):
+        self.variable[self.pointer1] = max(self.variable[self.pointer1])
+
+    # min
+    def x2B(self):
+        self.variable[self.pointer1] = min(self.variable[self.pointer1])
+
+    # modf
+    def x2C(self):
+        self.variable[self.pointer1] = math.modf(self.variable[self.pointer1])
+
+    # pow
+    def x2D(self):
+        self.variable[self.pointer1] = math.pow(self.variable[self.pointer1], self.variable[self.pointer2])
+
+    # round
+    def x2E(self):
+        self.variable[self.pointer1] = round(self.variable[self.pointer1], self.variable[self.pointer2])
+
+    # sqrt
+    def x2F(self):
+        self.variable[self.pointer1] = math.sqrt(self.variable[self.pointer1])
 
     # parse the nested statements
     def parse(self,program):
