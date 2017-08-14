@@ -303,6 +303,110 @@ class Program:
     def x41(self):
         self.variable[-1] = math.e
 
+    # letter a
+    def x42(self):
+        self.variable[-1] = 'a'
+
+    # letter b
+    def x43(self):
+        self.variable[-1] = 'b'
+
+    # letter c
+    def x44(self):
+        self.variable[-1] = 'c'
+
+    # letter d
+    def x45(self):
+        self.variable[-1] = 'd'
+
+    # letter e
+    def x46(self):
+        self.variable[-1] = 'e'
+
+    # letter f
+    def x47(self):
+        self.variable[-1] = 'f'
+
+    # letter g
+    def x48(self):
+        self.variable[-1] = 'g'
+
+    # letter h
+    def x49(self):
+        self.variable[-1] = 'h'
+
+    # letter i
+    def x4A(self):
+        self.variable[-1] = 'i'
+
+    # letter j
+    def x4B(self):
+        self.variable[-1] = 'j'
+
+    # letter k
+    def x4C(self):
+        self.variable[-1] = 'k'
+
+    # letter l
+    def x4D(self):
+        self.variable[-1] = 'l'
+
+    # letter m
+    def x4E(self):
+        self.variable[-1] = 'm'
+
+    # letter n
+    def x4F(self):
+        self.variable[-1] = 'n'
+
+    # letter o
+    def x50(self):
+        self.variable[-1] = 'o'
+
+    # letter p
+    def x51(self):
+        self.variable[-1] = 'p'
+
+    # letter q
+    def x52(self):
+        self.variable[-1] = 'q'
+
+    # letter r
+    def x53(self):
+        self.variable[-1] = 'r'
+
+    # letter s
+    def x54(self):
+        self.variable[-1] = 's'
+
+    # letter t
+    def x55(self):
+        self.variable[-1] = 't'
+
+    # letter u
+    def x56(self):
+        self.variable[-1] = 'u'
+
+    # letter v
+    def x57(self):
+        self.variable[-1] = 'v'
+
+    # letter w
+    def x58(self):
+        self.variable[-1] = 'w'
+
+    # letter x
+    def x59(self):
+        self.variable[-1] = 'x'
+
+    # letter y
+    def x5A(self):
+        self.variable[-1] = 'y'
+
+    # letter z
+    def x5B(self):
+        self.variable[-1] = 'z'
+
 
     # parse the nested statements
     def parse(self,program):
