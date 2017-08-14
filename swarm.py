@@ -114,10 +114,14 @@ class Program:
     # increase pointer1
     def x18(self):
         self.pointer1 += 1
+        sign = self.pointer1 / self.pointer1
+        self.pointer1 = sign * (self.pointer1 % len(self.variable))
 
     # decrease pointer1
     def x19(self):
         self.pointer1 -= 1
+        sign = self.pointer1 / self.pointer1
+        self.pointer1 = sign * (self.pointer1 % len(self.variable))
 
     # increase pointer2
     def x1A(self):
