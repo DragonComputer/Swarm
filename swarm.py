@@ -860,6 +860,54 @@ class Program:
     def x130(self):
         self.variable[-1] = [self.variable[-1][-1]] + self.variable[-1][:-1]
 
+    # list to tuple
+    def x131(self):
+        self.variable[-1] = tuple(self.variable[-1])
+
+    # convert to str
+    def x132(self):
+        self.variable[-1] = str(self.variable[-1])
+
+    # convert to int
+    def x133(self):
+        self.variable[-1] = int(self.variable[-1])
+
+    # convert to float
+    def x134(self):
+        self.variable[-1] = float(self.variable[-1])
+
+    # convert to long
+    def x135(self):
+        self.variable[-1] = long(self.variable[-1])
+
+    # convert to complex
+    def x136(self):
+        self.variable[-1] = complex(self.variable[-1], self.variable[-2])
+
+    # convert to repr
+    def x137(self):
+        self.variable[-1] = repr(self.variable[-1])
+
+    # convert to eval
+    def x138(self):
+        self.variable[-1] = eval(self.variable[-1])
+
+    # convert to list
+    def x139(self):
+        self.variable[-1] = list(self.variable[-1])
+
+    # convert to chr
+    def x13A(self):
+        self.variable[-1] = chr(self.variable[-1])
+
+    # convert to ord
+    def x13B(self):
+        self.variable[-1] = ord(self.variable[-1])
+
+    # convert to oct
+    def x13C(self):
+        self.variable[-1] = oct(self.variable[-1])
+
 
     # parse the nested statements
     def parse(self,program):
