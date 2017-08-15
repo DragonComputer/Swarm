@@ -551,6 +551,146 @@ class Program:
     def x80(self):
         self.variable[-1] = '9'
 
+    # character "
+    def x82(self):
+        self.variable[-1] = '"'
+
+    # character !
+    def x83(self):
+        self.variable[-1] = '!'
+
+    # character '
+    def x84(self):
+        self.variable[-1] = "'"
+
+    # character ^
+    def x86(self):
+        self.variable[-1] = '^'
+
+    # character #
+    def x87(self):
+        self.variable[-1] = '#'
+
+    # character +
+    def x88(self):
+        self.variable[-1] = '+'
+
+    # character $
+    def x89(self):
+        self.variable[-1] = '$'
+
+    # character %
+    def x8A(self):
+        self.variable[-1] = '%'
+
+    # character &
+    def x8C(self):
+        self.variable[-1] = '&'
+
+    # character /
+    def x8E(self):
+        self.variable[-1] = '/'
+
+    # character {
+    def x8F(self):
+        self.variable[-1] = '{'
+
+    # character (
+    def x90(self):
+        self.variable[-1] = '('
+
+    # character [
+    def x91(self):
+        self.variable[-1] = '['
+
+    # character )
+    def x92(self):
+        self.variable[-1] = ')'
+
+    # character ]
+    def x93(self):
+        self.variable[-1] = ']'
+
+    # character =
+    def x94(self):
+        self.variable[-1] = '='
+
+    # character }
+    def x95(self):
+        self.variable[-1] = '}'
+
+    # character ?
+    def x96(self):
+        self.variable[-1] = '?'
+
+    # character *
+    def x97(self):
+        self.variable[-1] = '*'
+
+    # character \
+    def x98(self):
+        self.variable[-1] = '\\'
+
+    # character -
+    def x99(self):
+        self.variable[-1] = '-'
+
+    # character _
+    def x9A(self):
+        self.variable[-1] = '_'
+
+    # character \t
+    def x9B(self):
+        self.variable[-1] = '\t'
+
+    # character \n
+    def x9C(self):
+        self.variable[-1] = '\n'
+
+    # character \r
+    def x9D(self):
+        self.variable[-1] = '\r'
+
+    # character @
+    def x9E(self):
+        self.variable[-1] = '@'
+
+    # character ~
+    def x100(self):
+        self.variable[-1] = '~'
+
+    # character `
+    def x105(self):
+        self.variable[-1] = '`'
+
+    # character ,
+    def x106(self):
+        self.variable[-1] = ','
+
+    # character ;
+    def x107(self):
+        self.variable[-1] = ';'
+
+    # character <
+    def x108(self):
+        self.variable[-1] = '<'
+
+    # character >
+    def x109(self):
+        self.variable[-1] = '>'
+
+    # character |
+    def x10A(self):
+        self.variable[-1] = '|'
+
+    # character .
+    def x10B(self):
+        self.variable[-1] = '.'
+
+    # character :
+    def x10C(self):
+        self.variable[-1] = ':'
+
 
     # parse the nested statements
     def parse(self,program):
