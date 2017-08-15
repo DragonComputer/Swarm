@@ -114,13 +114,11 @@ class Program:
 
     # shift variables left
     def x018(self):
-        element = self.variable.pop(0)
-        self.variable + [element]
+        self.variable = self.variable[1:] + [self.variable[0]]
 
     # shift variables right
     def x019(self):
-        element = self.variable.pop()
-        [element] + self.variable
+        self.variable = [self.variable[-1]] + self.variable[:-1]
 
     # assign an empty list
     def x01A(self):
@@ -690,7 +688,7 @@ class Program:
     def x105(self):
         self.variable[-1] = self.variable[-1].center(self.variable[-2], self.variable[-3])
 
-    # string count
+    # string/list count
     def x106(self):
         self.variable[-1] = self.variable[-1].count(self.variable[-2])
 
@@ -710,7 +708,7 @@ class Program:
     def x10A(self):
         self.variable[-1] = self.variable[-1].find(self.variable[-2])
 
-    # string index
+    # string/list index
     def x10B(self):
         self.variable[-1] = self.variable[-1].index(self.variable[-2])
 
@@ -809,6 +807,58 @@ class Program:
     # string isdecimal
     def x123(self):
         self.variable[-1] = self.variable[-1].isdecimal()
+
+    # list index
+    def x124(self):
+        self.variable[-1] = self.variable[-1][self.variable[-2]]
+
+    # list slice
+    def x125(self):
+        self.variable[-1] = self.variable[-1][self.variable[-2]:self.variable[-3]]
+
+    # list index assign
+    def x126(self):
+        self.variable[-1][self.variable[-2]] = self.variable[-3]
+
+    # delete list element
+    def x127(self):
+        del self.variable[-1][self.variable[-2]]
+
+    # list append
+    def x128(self):
+        self.variable[-1].append(self.variable[-2])
+
+    # list extend
+    def x129(self):
+        self.variable[-1].extend(self.variable[-2])
+
+    # list insert
+    def x12A(self):
+        self.variable[-1].insert(self.variable[-2])
+
+    # list pop
+    def x12B(self):
+        self.variable[-1] = self.variable[-2].pop(self.variable[-3])
+
+    # list remove
+    def x12C(self):
+        self.variable[-1].remove(self.variable[-2])
+
+    # list reverse
+    def x12D(self):
+        self.variable[-1].reverse()
+
+    # list sort
+    def x12E(self):
+        self.variable[-1].sort()
+
+    # lift shift left
+    def x12F(self):
+        self.variable[-1] = self.variable[-1][1:] + [self.variable[-1][0]]
+
+    # lift shift right
+    def x130(self):
+        self.variable[-1] = [self.variable[-1][-1]] + self.variable[-1][:-1]
 
 
     # parse the nested statements
