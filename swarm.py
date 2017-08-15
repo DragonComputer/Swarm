@@ -6,7 +6,6 @@ class Program:
 
     def __init__(self, filename):
         self.variable = []
-        self.pointer = []
         self.power_of_ten = 0
 
         with open(filename) as f:
@@ -20,7 +19,6 @@ class Program:
     # create a new variable
     def x000(self):
         self.variable.append(None)
-        self.pointer.append(-len(self.variable))
 
     # print all variables
     def x001(self):
@@ -114,19 +112,15 @@ class Program:
     def x017(self):
         self.variable[-1] = self.variable[-1] <= self.variable[-2]
 
-    # increase the pointer
+    # shift variables left
     def x018(self):
-        the_pointer = self.pointer[self.variable[-1] % len(self.pointer)]
-        the_pointer += 1
-        sign = the_pointer / abs(the_pointer)
-        self.pointer[self.variable[-1] % len(self.pointer)] = sign * (the_pointer % len(self.variable))
+        element = self.variable.pop(0)
+        self.variable + [element]
 
-    # decrease the pointer
+    # shift variables right
     def x019(self):
-        the_pointer = self.pointer[self.variable[-1] % len(self.pointer)]
-        the_pointer -= 1
-        sign = the_pointer / abs(the_pointer)
-        self.pointer[self.variable[-1] % len(self.pointer)] = sign * (the_pointer % len(self.variable))
+        element = self.variable.pop()
+        [element] + self.variable
 
     # assign an empty list
     def x01A(self):
