@@ -12,683 +12,683 @@ class Program:
         with open(filename) as f:
             program = ''.join(line.strip() for line in f)
             #print program
-            program = [program[i:i + 2] for i in range(0, len(program), 2)]
+            program = [program[i:i + 3] for i in range(0, len(program), 3)]
             program = self.parse(program)
             #print program
-            self.x00()
-            self.x00()
-            self.x00()
+            self.x000()
+            self.x000()
+            self.x000()
             self.execute(program)
 
     # create a new variable
-    def x00(self):
+    def x000(self):
         self.variable.append(None)
         self.pointer.append(-len(self.variable))
 
     # print all variables
-    def x01(self):
+    def x001(self):
         print self.variable
 
     # assign an integer value
-    def x02(self):
+    def x002(self):
         self.variable[-1] = 0
 
     # assign a float value
-    def x03(self):
+    def x003(self):
         self.variable[-1] = 0.0
 
     # assign a string value
-    def x04(self):
+    def x004(self):
         self.variable[-1] = ""
 
     # + 1
-    def x05(self):
+    def x005(self):
         self.variable[-1] = self.variable[-1] + 1 * (10 ** self.power_of_ten)
 
     # - 1
-    def x06(self):
+    def x006(self):
         self.variable[-1] = self.variable[-1] - 1 * (10 ** self.power_of_ten)
 
     # power of ten + 1
-    def x07(self):
+    def x007(self):
         self.power_of_ten = self.power_of_ten + 1
 
     # power of ten - 1
-    def x08(self):
+    def x008(self):
         self.power_of_ten = self.power_of_ten - 1
 
     # addition
-    def x09(self):
+    def x009(self):
         self.variable[-1] = self.variable[-1] + self.variable[-2]
 
     # subtraction
-    def x0A(self):
+    def x00A(self):
         self.variable[-1] = self.variable[-1] - self.variable[-2]
 
     # multiplication
-    def x0B(self):
+    def x00B(self):
         self.variable[-1] = self.variable[-1] * self.variable[-2]
 
     # division
-    def x0C(self):
+    def x00C(self):
         self.variable[-1] = self.variable[-1] / self.variable[-2]
 
     # modulus
-    def x0D(self):
+    def x00D(self):
         self.variable[-1] = self.variable[-1] % self.variable[-2]
 
     # exponent
-    def x0E(self):
+    def x00E(self):
         self.variable[-1] = self.variable[-1] ** self.variable[-2]
 
     # floor division
-    def x0F(self):
+    def x00F(self):
         self.variable[-1] = self.variable[-1] // self.variable[-2]
 
     # assign False
-    def x10(self):
+    def x010(self):
         self.variable[-1] = False
 
     # assign True
-    def x11(self):
+    def x011(self):
         self.variable[-1] = True
 
     # == (equal)
-    def x12(self):
+    def x012(self):
         self.variable[-1] = self.variable[-1] == self.variable[-2]
 
     # != (not equal)
-    def x13(self):
+    def x013(self):
         self.variable[-1] = self.variable[-1] != self.variable[-2]
 
     # > (greater than)
-    def x14(self):
+    def x014(self):
         self.variable[-1] = self.variable[-1] > self.variable[-2]
 
     # < (less than)
-    def x15(self):
+    def x015(self):
         self.variable[-1] = self.variable[-1] < self.variable[-2]
 
     # >= (greater than or equal)
-    def x16(self):
+    def x016(self):
         self.variable[-1] = self.variable[-1] >= self.variable[-2]
 
     # <= (less than or equal)
-    def x17(self):
+    def x017(self):
         self.variable[-1] = self.variable[-1] <= self.variable[-2]
 
     # increase the pointer
-    def x18(self):
+    def x018(self):
         the_pointer = self.pointer[self.variable[-1] % len(self.pointer)]
         the_pointer += 1
         sign = the_pointer / abs(the_pointer)
         self.pointer[self.variable[-1] % len(self.pointer)] = sign * (the_pointer % len(self.variable))
 
     # decrease the pointer
-    def x19(self):
+    def x019(self):
         the_pointer = self.pointer[self.variable[-1] % len(self.pointer)]
         the_pointer -= 1
         sign = the_pointer / abs(the_pointer)
         self.pointer[self.variable[-1] % len(self.pointer)] = sign * (the_pointer % len(self.variable))
 
     # assign an empty list
-    def x1A(self):
+    def x01A(self):
         self.variable[-1] = []
 
     # assign an empty dictionary
-    def x1B(self):
+    def x01B(self):
         self.variable[-1] = {}
 
     # if
-    def x1C(self):
+    def x01C(self):
         if self.variable[-1]:
             return True
         else:
             return False
 
     # if not
-    def x1D(self):
+    def x01D(self):
         if not self.variable[-1]:
             return True
         else:
             return False
 
     # end
-    def x1E(self):
+    def x01E(self):
         pass
 
     # while
-    def x1F(self):
+    def x01F(self):
         if self.variable[-1]:
             return True
         else:
             return False
 
     # unless
-    def x20(self):
+    def x020(self):
         if not self.variable[-1]:
             return True
         else:
             return False
 
     # break
-    def x21(self):
+    def x021(self):
         pass
 
     # abs
-    def x22(self):
+    def x022(self):
         self.variable[-1] = abs(self.variable[-1])
 
     # ceil
-    def x23(self):
+    def x023(self):
         self.variable[-1] = math.ceil(self.variable[-1])
 
     # cmp
-    def x24(self):
+    def x024(self):
         self.variable[-1] = cmp(self.variable[-1], self.variable[-2])
 
     # exp
-    def x25(self):
+    def x025(self):
         self.variable[-1] = math.exp(self.variable[-1])
 
     # fabs
-    def x26(self):
+    def x026(self):
         self.variable[-1] = math.fabs(self.variable[-1])
 
     # floor
-    def x27(self):
+    def x027(self):
         self.variable[-1] = math.floor(self.variable[-1])
 
     # log
-    def x28(self):
+    def x028(self):
         self.variable[-1] = math.log(self.variable[-1])
 
     # log10
-    def x29(self):
+    def x029(self):
         self.variable[-1] = math.log10(self.variable[-1])
 
     # max
-    def x2A(self):
+    def x02A(self):
         self.variable[-1] = max(self.variable[-1])
 
     # min
-    def x2B(self):
+    def x02B(self):
         self.variable[-1] = min(self.variable[-1])
 
     # modf
-    def x2C(self):
+    def x02C(self):
         self.variable[-1] = math.modf(self.variable[-1])
 
     # pow
-    def x2D(self):
+    def x02D(self):
         self.variable[-1] = math.pow(self.variable[-1], self.variable[-2])
 
     # round
-    def x2E(self):
+    def x02E(self):
         self.variable[-1] = round(self.variable[-1], self.variable[-2])
 
     # sqrt
-    def x2F(self):
+    def x02F(self):
         self.variable[-1] = math.sqrt(self.variable[-1])
 
     # choice
-    def x30(self):
+    def x030(self):
         self.variable[-1] = random.choice(self.variable[-1])
 
     # randrange
-    def x31(self):
+    def x031(self):
         self.variable[-1] = random.randrange(self.variable[-1], self.variable[-2], self.variable[-3])
 
     # random
-    def x32(self):
+    def x032(self):
         self.variable[-1] = random.random()
 
     # seed
-    def x33(self):
+    def x033(self):
         random.seed(self.variable[-1])
 
     # shuffle
-    def x34(self):
+    def x034(self):
         random.shuffle(self.variable[-1])
 
     # uniform
-    def x35(self):
+    def x035(self):
         self.variable[-1] = random.uniform(self.variable[-1], self.variable[-2])
 
     # acos
-    def x36(self):
+    def x036(self):
         self.variable[-1] = math.acos(self.variable[-1])
 
     # asin
-    def x37(self):
+    def x037(self):
         self.variable[-1] = math.asin(self.variable[-1])
 
     # atan
-    def x38(self):
+    def x038(self):
         self.variable[-1] = math.atan(self.variable[-1])
 
     # atan2
-    def x39(self):
+    def x039(self):
         self.variable[-1] = math.atan2(self.variable[-1], self.variable[-2])
 
     # cos
-    def x3A(self):
+    def x03A(self):
         self.variable[-1] = math.cos(self.variable[-1])
 
     # hypot
-    def x3B(self):
+    def x03B(self):
         self.variable[-1] = math.hypot(self.variable[-1], self.variable[-2])
 
     # sin
-    def x3C(self):
+    def x03C(self):
         self.variable[-1] = math.sin(self.variable[-1])
 
     # tan
-    def x3D(self):
+    def x03D(self):
         self.variable[-1] = math.tan(self.variable[-1])
 
     # degrees
-    def x3E(self):
+    def x03E(self):
         self.variable[-1] = math.degrees(self.variable[-1])
 
     # radians
-    def x3F(self):
+    def x03F(self):
         self.variable[-1] = math.radians(self.variable[-1])
 
     # assign pi
-    def x40(self):
+    def x040(self):
         self.variable[-1] = math.pi
 
     # assign e
-    def x41(self):
+    def x041(self):
         self.variable[-1] = math.e
 
     # letter a
-    def x42(self):
+    def x042(self):
         self.variable[-1] = 'a'
 
     # letter b
-    def x43(self):
+    def x043(self):
         self.variable[-1] = 'b'
 
     # letter c
-    def x44(self):
+    def x044(self):
         self.variable[-1] = 'c'
 
     # letter d
-    def x45(self):
+    def x045(self):
         self.variable[-1] = 'd'
 
     # letter e
-    def x46(self):
+    def x046(self):
         self.variable[-1] = 'e'
 
     # letter f
-    def x47(self):
+    def x047(self):
         self.variable[-1] = 'f'
 
     # letter g
-    def x48(self):
+    def x048(self):
         self.variable[-1] = 'g'
 
     # letter h
-    def x49(self):
+    def x049(self):
         self.variable[-1] = 'h'
 
     # letter i
-    def x4A(self):
+    def x04A(self):
         self.variable[-1] = 'i'
 
     # letter j
-    def x4B(self):
+    def x04B(self):
         self.variable[-1] = 'j'
 
     # letter k
-    def x4C(self):
+    def x04C(self):
         self.variable[-1] = 'k'
 
     # letter l
-    def x4D(self):
+    def x04D(self):
         self.variable[-1] = 'l'
 
     # letter m
-    def x4E(self):
+    def x04E(self):
         self.variable[-1] = 'm'
 
     # letter n
-    def x4F(self):
+    def x04F(self):
         self.variable[-1] = 'n'
 
     # letter o
-    def x50(self):
+    def x050(self):
         self.variable[-1] = 'o'
 
     # letter p
-    def x51(self):
+    def x051(self):
         self.variable[-1] = 'p'
 
     # letter q
-    def x52(self):
+    def x052(self):
         self.variable[-1] = 'q'
 
     # letter r
-    def x53(self):
+    def x053(self):
         self.variable[-1] = 'r'
 
     # letter s
-    def x54(self):
+    def x054(self):
         self.variable[-1] = 's'
 
     # letter t
-    def x55(self):
+    def x055(self):
         self.variable[-1] = 't'
 
     # letter u
-    def x56(self):
+    def x056(self):
         self.variable[-1] = 'u'
 
     # letter v
-    def x57(self):
+    def x057(self):
         self.variable[-1] = 'v'
 
     # letter w
-    def x58(self):
+    def x058(self):
         self.variable[-1] = 'w'
 
     # letter x
-    def x59(self):
+    def x059(self):
         self.variable[-1] = 'x'
 
     # letter y
-    def x5A(self):
+    def x05A(self):
         self.variable[-1] = 'y'
 
     # letter z
-    def x5B(self):
+    def x05B(self):
         self.variable[-1] = 'z'
 
     # letter A
-    def x5C(self):
+    def x05C(self):
         self.variable[-1] = 'A'
 
     # letter B
-    def x5D(self):
+    def x05D(self):
         self.variable[-1] = 'B'
 
     # letter C
-    def x5E(self):
+    def x05E(self):
         self.variable[-1] = 'C'
 
     # letter D
-    def x5F(self):
+    def x05F(self):
         self.variable[-1] = 'D'
 
     # letter E
-    def x60(self):
+    def x060(self):
         self.variable[-1] = 'E'
 
     # letter F
-    def x61(self):
+    def x061(self):
         self.variable[-1] = 'F'
 
     # letter G
-    def x62(self):
+    def x062(self):
         self.variable[-1] = 'G'
 
     # letter H
-    def x63(self):
+    def x063(self):
         self.variable[-1] = 'H'
 
     # letter I
-    def x64(self):
+    def x064(self):
         self.variable[-1] = 'I'
 
     # letter J
-    def x65(self):
+    def x065(self):
         self.variable[-1] = 'J'
 
     # letter K
-    def x66(self):
+    def x066(self):
         self.variable[-1] = 'K'
 
     # letter L
-    def x67(self):
+    def x067(self):
         self.variable[-1] = 'L'
 
     # letter M
-    def x68(self):
+    def x068(self):
         self.variable[-1] = 'M'
 
     # letter N
-    def x69(self):
+    def x069(self):
         self.variable[-1] = 'N'
 
     # letter O
-    def x6A(self):
+    def x06A(self):
         self.variable[-1] = 'O'
 
     # letter P
-    def x6B(self):
+    def x06B(self):
         self.variable[-1] = 'P'
 
     # letter Q
-    def x6C(self):
+    def x06C(self):
         self.variable[-1] = 'Q'
 
     # letter R
-    def x6D(self):
+    def x06D(self):
         self.variable[-1] = 'R'
 
     # letter S
-    def x6E(self):
+    def x06E(self):
         self.variable[-1] = 'S'
 
     # letter T
-    def x6F(self):
+    def x06F(self):
         self.variable[-1] = 'T'
 
     # letter U
-    def x71(self):
+    def x071(self):
         self.variable[-1] = 'U'
 
     # letter V
-    def x72(self):
+    def x072(self):
         self.variable[-1] = 'V'
 
     # letter W
-    def x73(self):
+    def x073(self):
         self.variable[-1] = 'W'
 
     # letter X
-    def x74(self):
+    def x074(self):
         self.variable[-1] = 'X'
 
     # letter Y
-    def x75(self):
+    def x075(self):
         self.variable[-1] = 'Y'
 
     # letter Z
-    def x76(self):
+    def x076(self):
         self.variable[-1] = 'Z'
 
     # character 0
-    def x77(self):
+    def x077(self):
         self.variable[-1] = '0'
 
     # character 1
-    def x78(self):
+    def x078(self):
         self.variable[-1] = '1'
 
     # character 2
-    def x79(self):
+    def x079(self):
         self.variable[-1] = '2'
 
     # character 3
-    def x7A(self):
+    def x07A(self):
         self.variable[-1] = '3'
 
     # character 4
-    def x7B(self):
+    def x07B(self):
         self.variable[-1] = '4'
 
     # character 5
-    def x7C(self):
+    def x07C(self):
         self.variable[-1] = '5'
 
     # character 6
-    def x7D(self):
+    def x07D(self):
         self.variable[-1] = '6'
 
     # character 7
-    def x7E(self):
+    def x07E(self):
         self.variable[-1] = '7'
 
     # character 8
-    def x7F(self):
+    def x07F(self):
         self.variable[-1] = '8'
 
     # character 9
-    def x80(self):
+    def x080(self):
         self.variable[-1] = '9'
 
     # character "
-    def x82(self):
+    def x081(self):
         self.variable[-1] = '"'
 
     # character !
-    def x83(self):
+    def x082(self):
         self.variable[-1] = '!'
 
     # character '
-    def x84(self):
+    def x083(self):
         self.variable[-1] = "'"
 
     # character ^
-    def x86(self):
+    def x084(self):
         self.variable[-1] = '^'
 
     # character #
-    def x87(self):
+    def x085(self):
         self.variable[-1] = '#'
 
     # character +
-    def x88(self):
+    def x086(self):
         self.variable[-1] = '+'
 
     # character $
-    def x89(self):
+    def x087(self):
         self.variable[-1] = '$'
 
     # character %
-    def x8A(self):
+    def x088(self):
         self.variable[-1] = '%'
 
     # character &
-    def x8C(self):
+    def x089(self):
         self.variable[-1] = '&'
 
     # character /
-    def x8E(self):
+    def x08A(self):
         self.variable[-1] = '/'
 
     # character {
-    def x8F(self):
+    def x08B(self):
         self.variable[-1] = '{'
 
     # character (
-    def x90(self):
+    def x08C(self):
         self.variable[-1] = '('
 
     # character [
-    def x91(self):
+    def x08D(self):
         self.variable[-1] = '['
 
     # character )
-    def x92(self):
+    def x08E(self):
         self.variable[-1] = ')'
 
     # character ]
-    def x93(self):
+    def x08F(self):
         self.variable[-1] = ']'
 
     # character =
-    def x94(self):
+    def x090(self):
         self.variable[-1] = '='
 
     # character }
-    def x95(self):
+    def x091(self):
         self.variable[-1] = '}'
 
     # character ?
-    def x96(self):
+    def x092(self):
         self.variable[-1] = '?'
 
     # character *
-    def x97(self):
+    def x093(self):
         self.variable[-1] = '*'
 
     # character \
-    def x98(self):
+    def x094(self):
         self.variable[-1] = '\\'
 
     # character -
-    def x99(self):
+    def x095(self):
         self.variable[-1] = '-'
 
     # character _
-    def x9A(self):
+    def x096(self):
         self.variable[-1] = '_'
 
     # character \t
-    def x9B(self):
+    def x097(self):
         self.variable[-1] = '\t'
 
     # character \n
-    def x9C(self):
+    def x098(self):
         self.variable[-1] = '\n'
 
     # character \r
-    def x9D(self):
+    def x099(self):
         self.variable[-1] = '\r'
 
     # character @
-    def x9E(self):
+    def x09A(self):
         self.variable[-1] = '@'
 
     # character ~
-    def x100(self):
+    def x09B(self):
         self.variable[-1] = '~'
 
     # character `
-    def x105(self):
+    def x09C(self):
         self.variable[-1] = '`'
 
     # character ,
-    def x106(self):
+    def x09D(self):
         self.variable[-1] = ','
 
     # character ;
-    def x107(self):
+    def x09E(self):
         self.variable[-1] = ';'
 
     # character <
-    def x108(self):
+    def x09F(self):
         self.variable[-1] = '<'
 
     # character >
-    def x109(self):
+    def x100(self):
         self.variable[-1] = '>'
 
     # character |
-    def x10A(self):
+    def x101(self):
         self.variable[-1] = '|'
 
     # character .
-    def x10B(self):
+    def x102(self):
         self.variable[-1] = '.'
 
     # character :
-    def x10C(self):
+    def x103(self):
         self.variable[-1] = ':'
 
 
