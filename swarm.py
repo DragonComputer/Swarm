@@ -15,9 +15,6 @@ class Program:
             program = [program[i:i + 3] for i in range(0, len(program), 3)]
             program = self.parse(program)
             #print program
-            self.x000()
-            self.x000()
-            self.x000()
             self.execute(program)
 
     # create a new variable
@@ -690,6 +687,134 @@ class Program:
     # character :
     def x103(self):
         self.variable[-1] = ':'
+
+    # capitalize
+    def x104(self):
+        self.variable[-1] = self.variable[-1].capitalize()
+
+    # string center
+    def x105(self):
+        self.variable[-1] = self.variable[-1].center(self.variable[-2], self.variable[-3])
+
+    # string count
+    def x106(self):
+        self.variable[-1] = self.variable[-1].count(self.variable[-2])
+
+    # string startswith
+    def x107(self):
+        self.variable[-1] = self.variable[-1].startswith(self.variable[-2])
+
+    # string endswith
+    def x108(self):
+        self.variable[-1] = self.variable[-1].endswith(self.variable[-2])
+
+    # string expandtabs
+    def x109(self):
+        self.variable[-1] = self.variable[-1].expandtabs(self.variable[-2])
+
+    # string find
+    def x10A(self):
+        self.variable[-1] = self.variable[-1].find(self.variable[-2])
+
+    # string index
+    def x10B(self):
+        self.variable[-1] = self.variable[-1].index(self.variable[-2])
+
+    # string isalnum
+    def x10C(self):
+        self.variable[-1] = self.variable[-1].isalnum()
+
+    # string isalpha
+    def x10D(self):
+        self.variable[-1] = self.variable[-1].isalpha()
+
+    # string isdigit
+    def x10E(self):
+        self.variable[-1] = self.variable[-1].isdigit()
+
+    # string islower
+    def x10F(self):
+        self.variable[-1] = self.variable[-1].islower()
+
+    # string isnumeric
+    def x110(self):
+        self.variable[-1] = self.variable[-1].isnumeric()
+
+    # string isspace
+    def x111(self):
+        self.variable[-1] = self.variable[-1].isspace()
+
+    # string istitle
+    def x112(self):
+        self.variable[-1] = self.variable[-1].istitle()
+
+    # string isupper
+    def x113(self):
+        self.variable[-1] = self.variable[-1].isupper()
+
+    # string join
+    def x114(self):
+        self.variable[-1] = self.variable[-2].join(self.variable[-1])
+
+    # length
+    def x115(self):
+        self.variable[-1] = len(self.variable[-1])
+
+    # string left justify
+    def x116(self):
+        self.variable[-1] = self.variable[-1].ljust(self.variable[-2], self.variable[-3])
+
+    # string lower
+    def x117(self):
+        self.variable[-1] = self.variable[-1].lower()
+
+    # string upper
+    def x118(self):
+        self.variable[-1] = self.variable[-1].upper()
+
+    # string left strip
+    def x119(self):
+        self.variable[-1] = self.variable[-1].lstrip(self.variable[-2])
+
+    # string replace
+    def x11A(self):
+        self.variable[-1] = self.variable[-1].replace(self.variable[-2], self.variable[-3])
+
+    # string right justify
+    def x11B(self):
+        self.variable[-1] = self.variable[-1].rjust(self.variable[-2], self.variable[-3])
+
+    # string right strip
+    def x11C(self):
+        self.variable[-1] = self.variable[-1].rstrip(self.variable[-2])
+
+    # string split
+    def x11D(self):
+        self.variable[-1] = self.variable[-1].split(self.variable[-2])
+
+    # string splitlines
+    def x11E(self):
+        self.variable[-1] = self.variable[-1].splitlines()
+
+    # string strip
+    def x11F(self):
+        self.variable[-1] = self.variable[-1].strip(self.variable[-2])
+
+    # string swapcase
+    def x120(self):
+        self.variable[-1] = self.variable[-1].swapcase()
+
+    # string title
+    def x121(self):
+        self.variable[-1] = self.variable[-1].title()
+
+    # string zero fill
+    def x122(self):
+        self.variable[-1] = self.variable[-1].zfill(self.variable[-2])
+
+    # string isdecimal
+    def x123(self):
+        self.variable[-1] = self.variable[-1].isdecimal()
 
 
     # parse the nested statements

@@ -1,12 +1,14 @@
 from random import randint
 
-program = ""
+program = "000000000"
 
-for i in range(randint(1,10000)):
-    dec = randint(0, 259)
+for i in range(randint(1,100000)):
+    dec = randint(0, 291)
     hexa = hex(dec).split('x')[-1].upper()
-    if len(hexa) == 1:
+    if len(hexa) == 2:
         hexa = '0' + hexa
+    if len(hexa) == 1:
+        hexa = '00' + hexa
     program += hexa
 
 with open("000000.code","w+") as f:
