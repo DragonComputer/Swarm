@@ -511,6 +511,46 @@ class Program:
     def x76(self):
         self.variable[-1] = 'Z'
 
+    # character 0
+    def x77(self):
+        self.variable[-1] = '0'
+
+    # character 1
+    def x78(self):
+        self.variable[-1] = '1'
+
+    # character 2
+    def x79(self):
+        self.variable[-1] = '2'
+
+    # character 3
+    def x7A(self):
+        self.variable[-1] = '3'
+
+    # character 4
+    def x7B(self):
+        self.variable[-1] = '4'
+
+    # character 5
+    def x7C(self):
+        self.variable[-1] = '5'
+
+    # character 6
+    def x7D(self):
+        self.variable[-1] = '6'
+
+    # character 7
+    def x7E(self):
+        self.variable[-1] = '7'
+
+    # character 8
+    def x7F(self):
+        self.variable[-1] = '8'
+
+    # character 9
+    def x80(self):
+        self.variable[-1] = '9'
+
 
     # parse the nested statements
     def parse(self,program):
