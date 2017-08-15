@@ -908,6 +908,18 @@ class Program:
     def x13C(self):
         self.variable[-1] = oct(self.variable[-1])
 
+    # not
+    def x13D(self):
+        self.variable[-1] = not self.variable[-1]
+
+    # and
+    def x13E(self):
+        self.variable[-1] = self.variable[-1] and self.variable[-2]
+
+    # or
+    def x13F(self):
+        self.variable[-1] = self.variable[-1] or self.variable[-2]
+
 
     # parse the nested statements
     def parse(self,program):
