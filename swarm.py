@@ -1014,47 +1014,51 @@ class Program:
     def x155(self):
         self.variable[-1] = self.variable[-1].read()
 
-    # file read with param
+    # file readlines
     def x156(self):
+        self.variable[-1] = self.variable[-1].readlines()
+
+    # file read with param
+    def x157(self):
         self.variable[-1] = self.variable[-1].read(self.variable[-2])
 
     # os rename
-    def x157(self):
+    def x158(self):
         os.rename(self.variable[-1], self.variable[-2])
 
     # os remove
-    def x158(self):
+    def x159(self):
         os.remove(self.variable[-1])
 
     # os mkdir
-    def x159(self):
+    def x15A(self):
         os.mkdir(self.variable[-1])
 
     # os chdir
-    def x15A(self):
+    def x15B(self):
         os.chdir(self.variable[-1])
 
     # os getcwd
-    def x15B(self):
+    def x15C(self):
         os.getcwd(self.variable[-1])
 
     # os rmdir
-    def x15C(self):
+    def x15D(self):
         os.rmdir(self.variable[-1])
 
     # It's dangerous to include these methods before this point
     # Methods related to Files & Directories END
 
     # get the filename of the current running program
-    def x15D(self):
+    def x15E(self):
         self.variable[-1] = sys.argv[1]
 
     # run the program
-    def x15E(self):
+    def x15F(self):
         Program(self.variable[-1])
 
     # delete the previous variable
-    def x15F(self):
+    def x160(self):
         del self.variable[-2]
 
 
