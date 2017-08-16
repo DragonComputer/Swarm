@@ -752,7 +752,7 @@ class Program:
 
     # length
     def x115(self):
-        self.variable[-1] = len(self.variable[-1])
+        self.variable[-1] = len(self.variable[-2])
 
     # string left justify
     def x116(self):
@@ -854,11 +854,11 @@ class Program:
     def x12E(self):
         self.variable[-1].sort()
 
-    # lift shift left
+    # list shift left
     def x12F(self):
         self.variable[-1] = self.variable[-1][1:] + [self.variable[-1][0]]
 
-    # lift shift right
+    # list shift right
     def x130(self):
         self.variable[-1] = [self.variable[-1][-1]] + self.variable[-1][:-1]
 
@@ -1012,11 +1012,11 @@ class Program:
 
     # file read
     def x155(self):
-        self.variable[-1].read()
+        self.variable[-1] = self.variable[-1].read()
 
     # file read with param
     def x156(self):
-        self.variable[-1].read(self.variable[-2])
+        self.variable[-1] = self.variable[-1].read(self.variable[-2])
 
     # os rename
     def x157(self):
@@ -1052,6 +1052,10 @@ class Program:
     # run the program
     def x15E(self):
         Program(self.variable[-1])
+
+    # delete the previous variable
+    def x15F(self):
+        del self.variable[-2]
 
 
     # parse the nested statements
