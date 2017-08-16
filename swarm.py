@@ -1,6 +1,7 @@
 import sys
 import math
 import random
+import time
 
 class Program:
 
@@ -967,6 +968,19 @@ class Program:
     # dictionary values
     def x14B(self):
         self.variable[-1] = self.variable[-1].values()
+
+    # time get ticks
+    def x14C(self):
+        self.variable[-1] = time.time()
+
+    # time get CPU time
+    def x14D(self):
+        self.variable[-1] = time.clock()
+
+    # time sleep/wait
+    def x14E(self):
+        #time.sleep(float(self.variable[-1])) TODO
+        pass
 
 
     # parse the nested statements
