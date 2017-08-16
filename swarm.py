@@ -920,6 +920,54 @@ class Program:
     def x13F(self):
         self.variable[-1] = self.variable[-1] or self.variable[-2]
 
+    # dictionary assign
+    def x140(self):
+        self.variable[-1][str(self.variable[-2])] = self.variable[-3]
+
+    # dictionary delete
+    def x141(self):
+        del self.variable[-1][str(self.variable[-2])]
+
+    # dictionary clear
+    def x142(self):
+        self.variable[-1].clear()
+
+    # dictionary copy
+    def x143(self):
+        self.variable[-1] = self.variable[-2].copy()
+
+    # dictionary fromkeys
+    def x144(self):
+        self.variable[-1] = self.variable[-1].fromkeys(self.variable[-2])
+
+    # dictionary get
+    def x145(self):
+        self.variable[-1] = self.variable[-1].get(str(self.variable[-2]), self.variable[-3])
+
+    # dictionary has_key
+    def x146(self):
+        self.variable[-1] = self.variable[-1].has_key(str(self.variable[-2]))
+
+    # dictionary items
+    def x147(self):
+        self.variable[-1] = self.variable[-1].items()
+
+    # dictionary keys
+    def x148(self):
+        self.variable[-1] = self.variable[-1].keys()
+
+    # dictionary setdefault
+    def x149(self):
+        self.variable[-1] = self.variable[-1].setdefault(str(self.variable[-2]), self.variable[-3])
+
+    # dictionary update
+    def x14A(self):
+        self.variable[-1].clear(self.variable[-2])
+
+    # dictionary values
+    def x14B(self):
+        self.variable[-1] = self.variable[-1].values()
+
 
     # parse the nested statements
     def parse(self,program):
