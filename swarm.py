@@ -2,6 +2,7 @@ import sys
 import math
 import random
 import time
+import os
 
 class Program:
 
@@ -981,6 +982,76 @@ class Program:
     def x14E(self):
         #time.sleep(float(self.variable[-1])) TODO
         pass
+
+    # Methods related to Files & Directories START
+    # It's dangerous to include these methods after this point
+
+    # file open
+    def x14F(self):
+        self.variable[-1] = open(self.variable[-1], self.variable[-2])
+
+    # file name
+    def x150(self):
+        self.variable[-1] = self.variable[-1].name
+
+    # file is closed
+    def x151(self):
+        self.variable[-1] = self.variable[-1].closed
+
+    # file mode
+    def x152(self):
+        self.variable[-1] = self.variable[-1].mode
+
+    # file close
+    def x153(self):
+        self.variable[-1].close()
+
+    # file write
+    def x154(self):
+        self.variable[-1].write(self.variable[-2])
+
+    # file read
+    def x155(self):
+        self.variable[-1].read()
+
+    # file read with param
+    def x156(self):
+        self.variable[-1].read(self.variable[-2])
+
+    # os rename
+    def x157(self):
+        os.rename(self.variable[-1], self.variable[-2])
+
+    # os remove
+    def x158(self):
+        os.remove(self.variable[-1])
+
+    # os mkdir
+    def x159(self):
+        os.mkdir(self.variable[-1])
+
+    # os chdir
+    def x15A(self):
+        os.chdir(self.variable[-1])
+
+    # os getcwd
+    def x15B(self):
+        os.getcwd(self.variable[-1])
+
+    # os rmdir
+    def x15C(self):
+        os.rmdir(self.variable[-1])
+
+    # It's dangerous to include these methods before this point
+    # Methods related to Files & Directories END
+
+    # get the filename of the current running program
+    def x15D(self):
+        self.variable[-1] = sys.argv[1]
+
+    # run the program
+    def x15E(self):
+        Program(self.variable[-1])
 
 
     # parse the nested statements
