@@ -13,22 +13,21 @@ if SAFE_MODE:
 else:
     MAX_INST = int('168', 16)
 
-class Program:
+class Live:
 
     def __init__(self, filename):
         self.variable = []
         self.power_of_ten = 0
+        self.filename = filename
 
         with open(filename) as f:
             program = ''.join(line.strip() for line in f)
-            #print program
             program = [program[i:i + 3] for i in range(0, len(program), 3)]
-            program = self.parse(program)
-            #print program
             self.x000()
             self.x000()
             self.x000()
-            self.execute(program)
+            self.execute(list(program))
+            self.replicate(program)
 
     # create a new variable
     def x000(self):
@@ -1067,7 +1066,7 @@ class Program:
 
     # run the program
     def x15F(self):
-        Program(self.variable[-1])
+        Live(self.variable[-1])
 
     # delete the previous variable
     def x160(self):
@@ -1116,7 +1115,7 @@ class Program:
 
     # execute the given program
     def xFFE(self):
-        t = Thread(target=Program, args=(self.variable[-1], ))
+        t = Thread(target=Live, args=(self.variable[-1], ))
         t.start()
 
     # instruction mutation
@@ -1129,6 +1128,7 @@ class Program:
             if len(hexa) == 1:
                 hexa = '00' + hexa
             self.variable[-1] = hexa
+            return hexa
 
 
     # parse the nested statements
@@ -1153,7 +1153,7 @@ class Program:
 
     # execute the given program
     def execute(self,program):
-        #print program
+        program = self.parse(program)
         i = 0
         while i < len(program):
             if program[i] == '01C' or program[i] == '01D':
@@ -1174,6 +1174,22 @@ class Program:
                     pass
             i += 1
 
+    # replicate
+    def replicate(self,program):
+        self.variable[-1] = True
+        for i in range(len(program)):
+            mutate = self.xFFF()
+            if mutate:
+                program[i] = mutate
+        program = ''.join(program)
+
+        filename = repr(time.time()).replace('.','_')
+        with open(filename, "w+") as f:
+            f.write(program)
+
+        t = Thread(target=Live, args=(filename, ))
+        t.start()
+
 
 def generate():
     program = ""
@@ -1187,7 +1203,7 @@ def generate():
             hexa = '00' + hexa
         program += hexa
 
-    program += "000002FFD16700000005300015E14F160FFC12516016000001A16801F000161162FFF16316401E164165000000002FFD16700005300015E14F160FFC12516016000001A16801F00016116216316401E16416516800916000008600005800916000009600010200014C13711A16016014F160154150FFEFFE"
+    #program += "000002FFD16700000005300015E14F160FFC12516016000001A16801F000161162FFF16316401E164165000000002FFD16700005300015E14F160FFC12516016000001A16801F00016116216316401E16416516800916000008600005800916000009600010200014C13711A16016014F160154150FFEFFE"
 
     filename = "start.code"
     with open(filename,"w+") as f:
@@ -1197,6 +1213,6 @@ def generate():
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
-        Program(sys.argv[1])
+        Live(sys.argv[1])
     else:
-        Program(generate())
+        Live(generate())
