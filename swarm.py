@@ -16,6 +16,9 @@ class Program:
             program = [program[i:i + 3] for i in range(0, len(program), 3)]
             program = self.parse(program)
             #print program
+            self.x000()
+            self.x000()
+            self.x000()
             self.execute(program)
 
     # create a new variable
@@ -1093,6 +1096,11 @@ class Program:
     def x168(self):
         self.variable[-1], self.variable[-2] = self.variable[-2], self.variable[-1]
 
+    # split the program into instructions
+    def xFFC(self):
+        program = ''.join(line.strip() for line in self.variable[-1])
+        self.variable[-1] = [program[i:i + 3] for i in range(0, len(program), 3)]
+
     # assign replication code length that will be ignored on mutation
     def xFFD(self):
         self.variable[-1] = 79
@@ -1103,7 +1111,7 @@ class Program:
 
     # instruction mutation
     def xFFF(self):
-        if random.randint(1,1000) == 1 and self.variable[-1]:
+        if random.randint(1,2) == 1 and self.variable[-1]:
             dec = random.randint(0, 334)
             hexa = hex(dec).split('x')[-1].upper()
             if len(hexa) == 2:
