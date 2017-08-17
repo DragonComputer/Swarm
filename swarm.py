@@ -1061,6 +1061,37 @@ class Program:
     def x160(self):
         del self.variable[-2]
 
+    # pop 0
+    def x161(self):
+        self.variable[-1] = self.variable[-2].pop(0)
+
+    # string strip no param
+    def x162(self):
+        self.variable[-1] = self.variable[-1].strip()
+
+    # append 3
+    def x163(self):
+        self.variable[-3].append(self.variable[-1])
+
+    # delete the current variable
+    def x164(self):
+        del self.variable[-1]
+
+    # join empty
+    def x165(self):
+        self.variable[-1] = ''.join(self.variable[-1])
+
+    # instruction mutation
+    def xFFF(self):
+        if random.randint(1,1000) == 1 and self.variable[-1]:
+            dec = random.randint(0, 334)
+            hexa = hex(dec).split('x')[-1].upper()
+            if len(hexa) == 2:
+                hexa = '0' + hexa
+            if len(hexa) == 1:
+                hexa = '00' + hexa
+            self.variable[-1] = hexa
+
 
     # parse the nested statements
     def parse(self,program):
@@ -1069,12 +1100,12 @@ class Program:
         list_refs_stack = []
         while len(program) > 0:
             inst = program.pop(0)
-            if inst == '1C' or inst == '1D' or inst == '1F' or inst == '20':
+            if inst == '01C' or inst == '01D' or inst == '01F' or inst == '020':
                 list_ref.append(inst)
                 list_ref.append([])
                 list_refs_stack.append(list_ref)
                 list_ref = list_ref[-1]
-            elif inst == '1E':
+            elif inst == '01E':
                 if list_refs_stack:
                     list_ref = list_refs_stack.pop()
                 list_ref.append(inst)
@@ -1087,10 +1118,10 @@ class Program:
         #print program
         i = 0
         while i < len(program):
-            if program[i] == '1C' or program[i] == '1D':
+            if program[i] == '01C' or program[i] == '01D':
                 if eval('self.x' + program[i] + '()'):
                     self.execute(program[i+1])
-            elif program[i] == '1F' or program[i] == '20':
+            elif program[i] == '01F' or program[i] == '020':
                 while eval('self.x' + program[i] + '()'):
                     if self.execute(program[i+1]) == "break":
                         break
