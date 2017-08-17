@@ -1095,7 +1095,7 @@ class Program:
 
     # assign replication code length that will be ignored on mutation
     def xFFD(self):
-        self.variable[-1] = 195
+        self.variable[-1] = 79
 
     # execute the given program
     def xFFE(self):
