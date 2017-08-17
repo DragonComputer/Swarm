@@ -3,6 +3,7 @@ import math
 import random
 import time
 import os
+from threading import Thread
 
 class Program:
 
@@ -27,7 +28,7 @@ class Program:
 
     # print all variables
     def x001(self):
-        print self.variable
+        print(self.variable)
 
     # assign an integer value
     def x002(self):
@@ -1103,11 +1104,12 @@ class Program:
 
     # assign replication code length that will be ignored on mutation
     def xFFD(self):
-        self.variable[-1] = 79
+        self.variable[-1] = 80
 
     # execute the given program
     def xFFE(self):
-        os.system('python ' + sys.argv[0] + ' ' + self.variable[-1])
+        t = Thread(target=self.execute_new, args=())
+        t.start()
 
     # instruction mutation
     def xFFF(self):
@@ -1161,6 +1163,10 @@ class Program:
                 except:
                     pass
             i += 1
+
+    # execute the new program
+    def execute_new(self):
+        os.system('python ' + sys.argv[0] + ' ' + self.variable[-1])
 
 if __name__ == "__main__":
     Program(sys.argv[1])
