@@ -1108,7 +1108,7 @@ class Program:
 
     # execute the given program
     def xFFE(self):
-        t = Thread(target=self.execute_new, args=(sys.argv[0], self.variable[-1]))
+        t = Thread(target=Program, args=(self.variable[-1], ))
         t.start()
 
     # instruction mutation
@@ -1164,9 +1164,6 @@ class Program:
                     pass
             i += 1
 
-    # execute the new program
-    def execute_new(self, script, programfile):
-        os.system('python ' + script + ' ' + programfile)
 
 if __name__ == "__main__":
     Program(sys.argv[1])
