@@ -5,6 +5,14 @@ import time
 import os
 from threading import Thread
 
+LOOP_LIMIT = 1000
+SAFE_MODE = True
+
+if SAFE_MODE:
+    MAX_INST = int('14E', 16)
+else:
+    MAX_INST = int('168', 16)
+
 class Program:
 
     def __init__(self, filename):
@@ -1114,7 +1122,7 @@ class Program:
     # instruction mutation
     def xFFF(self):
         if random.randint(1,2) == 1 and self.variable[-1]:
-            dec = random.randint(0, 334)
+            dec = random.randint(0, MAX_INST)
             hexa = hex(dec).split('x')[-1].upper()
             if len(hexa) == 2:
                 hexa = '0' + hexa
@@ -1152,8 +1160,10 @@ class Program:
                 if eval('self.x' + program[i] + '()'):
                     self.execute(program[i+1])
             elif program[i] == '01F' or program[i] == '020':
+                j = 0
                 while eval('self.x' + program[i] + '()'):
-                    if self.execute(program[i+1]) == "break":
+                    j += 1
+                    if self.execute(program[i+1]) == "break" or j > LOOP_LIMIT:
                         break
             else:
                 if program[i] == '21':
@@ -1165,5 +1175,28 @@ class Program:
             i += 1
 
 
+def generate():
+    program = ""
+
+    for i in range(random.randint(1,1000)):
+        dec = random.randint(0, MAX_INST)
+        hexa = hex(dec).split('x')[-1].upper()
+        if len(hexa) == 2:
+            hexa = '0' + hexa
+        if len(hexa) == 1:
+            hexa = '00' + hexa
+        program += hexa
+
+    program += "000002FFD16700000005300015E14F160FFC12516016000001A16801F000161162FFF16316401E164165000000002FFD16700005300015E14F160FFC12516016000001A16801F00016116216316401E16416516800916000008600005800916000009600010200014C13711A16016014F160154150FFEFFE"
+
+    filename = "start.code"
+    with open(filename,"w+") as f:
+        f.write(program)
+    return filename
+
+
 if __name__ == "__main__":
-    Program(sys.argv[1])
+    if len(sys.argv) > 1:
+        Program(sys.argv[1])
+    else:
+        Program(generate())
