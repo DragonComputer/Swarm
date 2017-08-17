@@ -1081,6 +1081,22 @@ class Program:
     def x165(self):
         self.variable[-1] = ''.join(self.variable[-1])
 
+    # multiply by 2
+    def x166(self):
+        self.variable[-1] = self.variable[-1] * 2
+
+    # negative * -1
+    def x167(self):
+        self.variable[-1] = self.variable[-1] * -1
+
+    # swap variables
+    def x168(self):
+        self.variable[-1], self.variable[-2] = self.variable[-2], self.variable[-1]
+
+    # assign replication code length that will be ignored on mutation
+    def xFFE(self):
+        self.variable[-1] = 192
+
     # instruction mutation
     def xFFF(self):
         if random.randint(1,1000) == 1 and self.variable[-1]:
